@@ -6,10 +6,13 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
     "stimulus": "^1.1.1",
-    "turbolinks": "^5.2.0"
+    "ts-loader": "^6.2.1",
+    "turbolinks": "^5.2.0",
+    "typescript": "^3.7.5"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@types/webpack-env": "^1.15.0",
     "webpack-dev-server": "^3.10.1"
   }
 }
