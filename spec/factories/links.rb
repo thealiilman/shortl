@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :link do
-    key { SecureRandom.base36(5) }
+    key { SecureRandom.alphanumeric(5) }
     url { 'https://example.com' }
   end
 end

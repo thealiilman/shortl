@@ -29,11 +29,16 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # View
 gem 'slim-rails'
 
+# Documentation
+gem 'rswag-api'
+gem 'rswag-ui'
+
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 4.0.beta4'
+  gem 'rswag-specs'
   gem 'rubocop', '~> 0.79.0', require: false
 end
 
