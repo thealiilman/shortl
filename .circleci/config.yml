@@ -1,0 +1,62 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/shortl
+    docker:
+      - image: circleci/ruby:2.7.0
+        environment:
+          PGHOST: 127.0.0.1
+          RAILS_ENV: test
+          BUNDLER_VERSION: 2.1.2
+      - image: circleci/postgres:11.0
+        environment:
+          POSTGRES_DB: shortl_test
+          POSTGRES_USER: circleci
+          POSTGRES_PASSWORD: ""
+    steps:
+      - checkout
+
+      # Restore bundle cache
+      - restore_cache:
+          key: shortl-{{ checksum "Gemfile.lock" }}
+
+      # Install the right bundler version
+      - run:
+          name: Install the correct Bundler version
+          command: |
+            sudo gem update --system
+            sudo gem uninstall bundler
+            sudo rm /usr/local/bin/bundle
+            sudo rm /usr/local/bin/bundler
+            sudo gem install bundler
+      - run:
+          name: Bundle Install
+          command: bundle check --path vendor/bundle || bundle install --deployment
+
+      # Store bundle cache
+      - save_cache:
+          key: shortl-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      # Database setup
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Database setup
+          command: bin/rails db:schema:load --trace
+
+      # Run RuboCop
+      - run:
+          name: Run RuboCop
+          command: bundle exec rubocop
+
+      # Run RSpec
+      - run:
+          name: Run RSpec
+          command: |
+            bundle exec rspec --profile 10 \
+                              --format progress \
+                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
