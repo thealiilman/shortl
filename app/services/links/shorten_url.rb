@@ -1,5 +1,6 @@
 module Links
   class ShortenUrl
+    APP_HOST = Rails.application.credentials.config.dig(:app_host)
     attr_reader :url
 
     def initialize(url)
@@ -30,7 +31,7 @@ module Links
         success?: true,
         data: {
           original_url: url,
-          shortened_url: "#{Rails.application.credentials.dig(:app_host)}/#{link.key}"
+          shortened_url: "#{APP_HOST}/#{link.key}"
         }
       )
     end
