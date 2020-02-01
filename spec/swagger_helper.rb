@@ -14,11 +14,11 @@ RSpec.configure do |config|
   # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v2/swagger.json'
   config.swagger_docs = {
     'v1/swagger.yaml' => {
-      openapi: '3.0.1',
+      swagger: '2.0',
       info: {
         title: 'shortl API',
       },
-      basePath: '/api'
+      basePath: '/api/v1'
     }
   }
 

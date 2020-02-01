@@ -30,4 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  services:
+    links:
+      shorten_url:
+        errors:
+          invalid_url_scheme: The URL scheme must be https, http or mailto.
