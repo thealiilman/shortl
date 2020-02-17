@@ -5,7 +5,7 @@ html
       | Shortl
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_pack_tag 'css/application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_pack_tag 'js/application', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag 'public/css/application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'public/js/application', 'data-turbolinks-track': 'reload'
   body data = body_data
     = yield
