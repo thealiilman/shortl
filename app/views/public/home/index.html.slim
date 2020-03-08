@@ -1,2 +1,21 @@
-p
-  = controller_name
+div.container.d-flex.flex-column
+  .generate-link-container.d-flex.flex-column.justify-content-center.flex-1 data={ target: "#{stimulus_controller_name}.generateLinkContainer" }
+    h1#welcomeHeader = t('views.public.home.index.header.generate_shortened_link')
+    = form_with( \
+      url: api_v1_links_path,
+      class: 'd-flex flex-column align-items-center',
+      data: { \
+        action: "ajax:success->#{body_data[:controller]}#onSuccessfulLinkGeneration ajax:error->#{body_data[:controller]}#onUnsuccessfulLinkGeneration", \
+        target: "#{stimulus_controller_name}.form" \
+      },
+    ) do |f|
+      = f.text_field :url, placeholder: 'https://example.com', required: true
+      = f.submit t('views.public.home.index.form.submit')
+
+    h1#successfulGenerationHeader.d-none
+      = t('views.public.home.index.header.generated')
+    .shortened-link-container.d-none.justify-content-center.align-items-center.flex-wrap
+      p = t('views.public.home.index.description.shortened_link')
+    .original-link-container.d-none.justify-content-center.align-items-center.flex-wrap
+      p = t('views.public.home.index.description.original_link')
+  

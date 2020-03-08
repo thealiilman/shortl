@@ -35,3 +35,15 @@ en:
       shorten_url:
         errors:
           invalid_url_scheme: The URL scheme must be https, http or mailto.
+  views:
+    public:
+      home:
+        index:
+          header:
+            generate_shortened_link: Generate a shortened link for thy usage.
+            generated: You have generated a shortened link! 🎉
+          description:
+            shortened_link: 'The shortened link is '
+            original_link: 'The original link is '
+          form:
+            submit: GENERATE
