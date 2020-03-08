@@ -10,5 +10,9 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'public/home#index'
+  namespace :public, path: '/' do
+    root 'home#index'
+
+    get ':key', to: 'links#show', as: :link
+  end
 end
