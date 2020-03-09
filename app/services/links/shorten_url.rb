@@ -21,7 +21,7 @@ module Links
 
     def valid_url_scheme?
       uri = URI.parse(url)
-      %w[http https mailto].include?(uri.scheme)
+      %w[http https].include?(uri.scheme)
     end
 
     def generate_link_and_return_success_body

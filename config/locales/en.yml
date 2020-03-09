@@ -34,7 +34,7 @@ en:
     links:
       shorten_url:
         errors:
-          invalid_url_scheme: The URL scheme must be https, http or mailto.
+          invalid_url_scheme: The URL scheme must be https or http.
   views:
     public:
       home:
