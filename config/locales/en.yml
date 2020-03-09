@@ -45,5 +45,7 @@ en:
           description:
             shortened_link: 'The shortened link is '
             original_link: 'The original link is '
+          button:
+            reset: RESET
           form:
             submit: GENERATE

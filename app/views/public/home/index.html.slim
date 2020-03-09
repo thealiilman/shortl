@@ -18,4 +18,6 @@ div.container.d-flex.flex-column
       p = t('views.public.home.index.description.shortened_link')
     .original-link-container.d-none.justify-content-center.align-items-center.flex-wrap
       p = t('views.public.home.index.description.original_link')
+    button.reset-btn.d-none.align-self-center data={ action: "#{body_data[:controller]}#resetUi" }
+      = t('views.public.home.index.button.reset')
   

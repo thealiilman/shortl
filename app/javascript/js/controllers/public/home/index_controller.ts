@@ -36,7 +36,8 @@ class UiController {
   ): void => {
     const { original_url, shortened_url } = data
     target.querySelector('#welcomeHeader').classList.add('d-none')
-    target.querySelector('form').classList.add('d-none')
+    target.querySelector('form').classList.add('d-none');
+    (target.querySelector('form > input[type=text]') as HTMLInputElement).value = ''
     target.querySelector('#successfulGenerationHeader').classList.remove('d-none')
 
     const shortenedLinkElement = document.createElement('a')
@@ -56,12 +57,38 @@ class UiController {
     originalLinkContainer.appendChild(originalLinkElement)
     originalLinkContainer.classList.remove('d-none')
     originalLinkContainer.classList.add('d-flex')
+
+    const resetBtn = target.querySelector('.reset-btn')
+    resetBtn.classList.remove('d-none')
+  }
+
+  static resetUi(target: HTMLDivElement): void {
+    target.querySelector('#welcomeHeader').classList.remove('d-none')
+    target.querySelector('form').classList.remove('d-none')
+    target.querySelector('#successfulGenerationHeader').classList.add('d-none')
+
+    const shortenedLinkContainer = target.querySelector('.shortened-link-container')
+    shortenedLinkContainer.classList.remove('d-flex')
+    shortenedLinkContainer.classList.add('d-none')
+    shortenedLinkContainer.removeChild(shortenedLinkContainer.lastElementChild)
+
+    const originalLinkContainer = target.querySelector('.original-link-container')
+    originalLinkContainer.classList.remove('d-flex')
+    originalLinkContainer.classList.add('d-none')
+    originalLinkContainer.removeChild(originalLinkContainer.lastElementChild)
+
+    const resetBtn = target.querySelector('.reset-btn')
+    resetBtn.classList.add('d-none')
   }
 }
 
 export default class extends Controller {
   static targets = ['generateLinkContainer']
   generateLinkContainerTarget: HTMLDivElement
+
+  resetUi(): void {
+    UiController.resetUi(this.generateLinkContainerTarget)
+  }
 
   onSuccessfulLinkGeneration(data: SuccessfulLinkGenerationResponse): void {
     const { detail: [response] } = data
