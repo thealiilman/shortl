@@ -29,6 +29,7 @@ module Links
 
       OpenStruct.new(
         success?: true,
+        meta: OpenStruct.new(status: :created),
         data: {
           original_url: url,
           shortened_url: "#{APP_HOST}/#{link.key}"
@@ -39,6 +40,7 @@ module Links
     def error_body
       OpenStruct.new(
         success?: false,
+        meta: OpenStruct.new(status: :bad_request),
         data: {
           error: {
             message: I18n.t('services.links.shorten_url.errors.invalid_url_scheme')

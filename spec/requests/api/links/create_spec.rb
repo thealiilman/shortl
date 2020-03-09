@@ -9,28 +9,16 @@ describe Api::V1::LinksController, type: :request do
 
       parameter name: :url, in: :query, type: :string, required: true
 
-      response '201', 'returns body for successful shortening' do
+      response '201', 'returns a response with a status of created' do
         let(:url) { 'https://ali-ilman.com' }
 
-        run_test! do
-          data = JSON.parse(body).deep_symbolize_keys
-          link = Link.first
-
-          expect(data[:original_url]).to eq(url)
-          expect(data[:shortened_url]).to eq("#{request.domain}/#{link.key}")
-        end
+        run_test!
       end
 
-      response '400', 'returns error for unsuccessful shortening' do
+      response '400', 'returns a response with a status of bad_request' do
         let(:url) { 'fm://oasis.radio' }
 
-        run_test! do
-          data = JSON.parse(body).deep_symbolize_keys
-          link = Link.first
-
-          expect(data[:error][:message])
-            .to eq(I18n.t('services.links.shorten_url.errors.invalid_url_scheme'))
-        end
+        run_test!
       end
     end
   end

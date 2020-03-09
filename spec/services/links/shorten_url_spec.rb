@@ -10,6 +10,7 @@ RSpec.describe Links::ShortenUrl, type: :service do
 
         it do
           expect(subject.success?).to be false
+          expect(subject.meta.status).to eq :bad_request
           expect(subject.data[:error][:message])
             .to eq I18n.t('services.links.shorten_url.errors.invalid_url_scheme')
         end
@@ -21,6 +22,7 @@ RSpec.describe Links::ShortenUrl, type: :service do
 
       it do
         expect(subject.success?).to be true
+        expect(subject.meta.status).to eq :created
         expect(subject.data[:original_url]).to eq(url)
 
         link = Link.first

@@ -3,9 +3,8 @@ module Api
     class LinksController < BaseController
       def create
         result = Links::ShortenUrl.run(link_params)
-        status = result.success? ? :created : :bad_request
 
-        render json: result.data, status: status
+        render json: result.data, status: result.meta.status
       end
 
       private
