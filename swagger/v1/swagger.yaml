@@ -20,6 +20,6 @@ paths:
         required: true
       responses:
         '201':
-          description: returns body for successful shortening
+          description: returns a response with a status of created
         '400':
-          description: returns error for unsuccessful shortening
+          description: returns a response with a status of bad_request
