@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/shortl
     docker:
-      - image: circleci/ruby:2.7.0
+      - image: circleci/ruby:2.7.0-node-browsers
         environment:
           PGHOST: 127.0.0.1
           RAILS_ENV: test
@@ -53,10 +53,14 @@ jobs:
           name: Run RuboCop
           command: bundle exec rubocop
 
+      # Precompile assets
+      - run:
+          name: Precompile assets
+          command: bundle exec rails assets:precompile
       # Run RSpec
       - run:
           name: Run RSpec
           command: |
-            bundle exec rspec --profile 10 \
+            RUBYOPT='-W:no-deprecated -W:no-experimental' bundle exec rspec --profile 10 \
                               --format progress \
                               $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)

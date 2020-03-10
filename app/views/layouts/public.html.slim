@@ -1,0 +1,17 @@
+doctype html
+html lang="en-GB"
+  head
+    title
+      | Shortl
+    = csrf_meta_tags
+    = csp_meta_tag
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"
+    = stylesheet_pack_tag 'public/css/application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap", 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'public/js/application', 'data-turbolinks-track': 'reload'
+  body data = body_data class = body_class_name
+    .alert-container.d-flex
+      p.text-center.flex-1
+
+    = yield

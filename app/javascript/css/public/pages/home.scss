@@ -1,0 +1,113 @@
+.public-home-index-body {
+  .container {
+    min-height: 100vh;
+
+    .generate-link-container {
+      @extend .ibiza-sunset;
+      padding: 4rem 2rem;
+
+      h1 {
+        font-size: 3.4rem;
+        text-align: center;
+        color: $white;
+        animation: fadeInFromLeft .6s ease-in-out;
+
+        @keyframes fadeInFromLeft {
+          0% {
+            opacity: 0;
+            transform: translateX(-5rem);
+          }
+
+          50% {
+            transform: translateX(2rem);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+      }
+
+      form {
+        input {
+          &[type=text] {
+            font-size: 1.8rem;
+            border: none;
+            border-radius: .8rem;
+            padding: 1rem;
+
+            animation: fadeInFromRight .6s ease-in-out .4s backwards;
+          }
+
+          &[type=submit] {
+            margin-top: 3.2rem;
+            background-color: $minty-green;
+            color: white;
+            font-size: 3.2rem;
+
+            transition: transform .16s ease-in-out;
+            animation: fadeIn .6s ease-in-out .8s backwards;
+
+            &:hover {
+              transform: translateY(-.4rem);
+            }
+          }
+
+          @keyframes fadeInFromRight {
+            0% {
+              opacity: 0;
+              transform: translateX(5rem)
+            }
+
+            50% {
+              transform: translateX(-2rem);
+            }
+  
+            100% {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+        }
+      }
+
+      .shortened-link-container, .original-link-container {
+        font-size: 2.4rem;
+        white-space: pre;
+        animation: fadeIn .6s ease-in-out .4s backwards;
+
+        p {
+          color: $white;
+        }
+
+        a {
+          color: $white;
+          font-style: italic;
+
+          &:hover {
+            color: $minty-green;
+          }
+        }
+      }
+
+      .original-link-container {
+        margin-top: 1.6rem;
+      }
+
+      .reset-btn {
+        margin-top: 3.2rem;
+        background-color: $blue-nights;
+        color: white;
+        font-size: 3.2rem;
+
+        transition: transform .16s ease-in-out;
+        animation: fadeIn .6s ease-in-out .8s backwards;
+
+        &:hover {
+          transform: translateY(-.4rem);
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,18 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
+
+  namespace :api do
+    namespace :v1 do
+      resources :links, only: :create
+    end
+  end
+
+  namespace :public, path: '/' do
+    root 'home#index'
+
+    get ':key', to: 'links#show', as: :link
+  end
 end

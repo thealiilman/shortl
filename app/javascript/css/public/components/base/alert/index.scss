@@ -1,0 +1,53 @@
+.alert-container {
+  width: 100%;
+  position: absolute;
+  padding: 1.6rem;
+
+  p {
+    color: $white;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: .2rem;
+    transition: all .25s ease-in-out;
+  }
+
+  &.success, &.error {
+    box-shadow: 0 0.25rem 0.5rem rgba(31, 31, 31, 0.33);
+    animation: fadeInFromTop .25s ease-in-out;
+  }
+
+  &.success {
+    background-color: $minty-green;
+  }
+
+  &.error {
+    background-color: $sizzling-red;
+  }
+
+  &.fade-out {
+    animation: fadeOut .25s ease-in-out;
+  }
+
+  @keyframes fadeInFromTop {
+    from {
+      transform: translateY(-1rem);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      transform: translateY(-1rem);
+      opacity: 0;
+    }
+  }
+}
