@@ -1,6 +1,6 @@
 # shortl
-## About
 Shortl is a simple application for users to generate shortened links.
+
 ## Tech Stack
 Shortl is hosted on Heroku.
 
@@ -20,6 +20,7 @@ After you cloned the repo, enter the relevant directory.
 These steps assume that you already have Docker and Docker Compose on your machine.
 #### Prerequisite
 If you're using [Postgres.app](https://postgresapp.com/), please ensure that **it is not** running.
+#### Steps
 ```sh
 docker-compose build
 docker-compose run web rails db:create db:migrate
@@ -28,6 +29,7 @@ docker-compose up
 
 ### Without Docker
 Shortl uses `yarn` for managing packages.
+#### Steps
 ```sh
 bundle install
 yarn install
