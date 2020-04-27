@@ -3,13 +3,12 @@
     min-height: 100vh;
 
     .generate-link-container {
-      @extend .ibiza-sunset;
       padding: 4rem 2rem;
 
       h1 {
         font-size: 3.4rem;
         text-align: center;
-        color: $white;
+        color: $blue-nights;
         animation: fadeInFromLeft .6s ease-in-out;
 
         @keyframes fadeInFromLeft {
@@ -33,7 +32,7 @@
         input {
           &[type=text] {
             font-size: 1.8rem;
-            border: none;
+            border: 1px solid $blue-nights;
             border-radius: .8rem;
             padding: 1rem;
 
@@ -79,11 +78,11 @@
         animation: fadeIn .6s ease-in-out .4s backwards;
 
         p {
-          color: $white;
+          color: $blue-nights;
         }
 
         a {
-          color: $white;
+          color: $blue-nights;
           font-style: italic;
           text-align: center;
 

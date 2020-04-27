@@ -9,8 +9,16 @@ html {
 }
 
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Dosis', sans-serif;
   box-sizing: border-box;
+}
+
+input {
+  font-family: inherit;
+}
+
+button {
+  font-family: inherit;
 }
 
 button, input[type=submit] {
