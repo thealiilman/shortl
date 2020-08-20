@@ -8,9 +8,9 @@
 // </div>
 
 import { Controller } from 'stimulus'
-import { showAlert } from 'js/utils/alert'
+import { showAlert } from 'js/utils/alert';
 
-interface SuccessfulLinkGenerationResponse extends CustomEvent {
+type SuccessfulLinkGenerationResponse = CustomEvent & {
   detail: [
     {
       original_url: string
@@ -19,7 +19,7 @@ interface SuccessfulLinkGenerationResponse extends CustomEvent {
   ]
 }
 
-interface UnsuccessfulLinkGenerationResponse extends CustomEvent {
+type UnsuccessfulLinkGenerationResponse = CustomEvent & {
   detail: [
     {
       error: {
@@ -82,9 +82,15 @@ class UiController {
   }
 }
 
-export default class extends Controller {
-  static targets = ['generateLinkContainer']
-  generateLinkContainerTarget: HTMLDivElement
+// Fooling TS compiler. References:
+// - https://github.com/stimulusjs/stimulus/issues/221#issuecomment-457275513
+// - https://github.com/rails/webpacker/issues/2558
+class BaseController extends Controller {
+  public generateLinkContainerTarget!: HTMLDivElement;
+}
+
+export default class extends (Controller as typeof BaseController) {
+  public static targets = ['generateLinkContainer']
 
   resetUi(): void {
     UiController.resetUi(this.generateLinkContainerTarget)
